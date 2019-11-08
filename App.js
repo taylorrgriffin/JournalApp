@@ -1,19 +1,56 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Button, Text} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import AddEntryModal from './components/modals/addEntryModal';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <GlobalContainer/>
   );
+}
+
+class GlobalContainer extends Component {
+  constructor(props) {
+    super(props);
+    // this.addEntryModal = useRef(null);
+  }
+
+  render() {
+    return(
+      <View style={styles.container}>
+        <View style={styles.navbar}>
+          <Text h1>Journal</Text>
+          <Button
+            icon={
+              <Icon
+                name="pencil"
+                size={25}
+                color="white"
+              />
+            }
+            onPress={() => {this.addEntryModal.setModalVisible(true)}}
+            style={{alignSelf: 'flex-end'}}
+          />
+        </View>
+        <AddEntryModal
+          ref={addEntryModal => {this.addEntryModal = addEntryModal}}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    padding: 60,
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  navbar: {
+    flexDirection:'row',
+    flexWrap:'wrap'
   },
 });
