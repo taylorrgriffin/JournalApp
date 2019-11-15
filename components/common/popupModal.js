@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import { Input, Button, Overlay } from 'react-native-elements';
-import { requestWithoutBodyAsync } from './request';
+import { requestWithBodyAsync } from './request';
 
 export default class PopupModal extends Component {
   constructor(props) {
@@ -61,17 +61,13 @@ export default class PopupModal extends Component {
             onPress={() => {
               console.info("Subject: " + this.state.subject);
               console.info("Contents: " + this.state.contents);
-              // requestAsync('/entry', 'POST', {
-              //   "subject": this.state.subject,
-              //   "contents": this.state.contents
-              // }).then((responseJson) => {
-              //   console.info(JSON.stringify(responseJson));
-              // });
-              requestWithoutBodyAsync('/entry', 'GET')
-                .then((responseJson) => {
-                  console.info(JSON.stringify(responseJson));
+              requestWithBodyAsync('/entry', 'POST', JSON.stringify({
+                  subject: this.state.subject,
+                  contents: this.state.contents
+                })).then((responseJson) => {
+                console.info(JSON.stringify(responseJson));
+                this.setModalVisible(false)
               });
-              // this.setModalVisible(false)
             }}
             style={styles.button}
           />
