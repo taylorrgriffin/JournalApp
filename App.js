@@ -13,14 +13,17 @@ export default function App() {
 class GlobalContainer extends Component {
   constructor(props) {
     super(props);
-    // this.addEntryModal = useRef(null);
   }
 
   render() {
     return(
       <View style={styles.container}>
         <View style={styles.navbar}>
-          <Text h1>Journal</Text>
+          <Text 
+          h1
+          style={{alignSelf: 'flex-start'}}>
+            Journal
+          </Text>
           <Button
             icon={
               <Icon
@@ -46,8 +49,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 60,
     backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   navbar: {
     flexDirection:'row',
