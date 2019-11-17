@@ -8,27 +8,31 @@ export default class PopupModal extends Component {
     super(props);
     this.title = 'Def';
     this.handleSubject = this.handleSubject.bind(this);
-    this.handleContents = this.handleContents.bind(this);
+    this.handleBody = this.handleBody.bind(this);
     this.setModalVisible = this.setModalVisible.bind(this);
   }
 
   state = {
     modalVisible: false,
     subject: null,
-    contents: null
+    body: null
   };
 
   handleSubject(event) {
     this.setState({subject: event.nativeEvent.text})
   }
 
-  handleContents(event) {
-    this.setState({contents: event.nativeEvent.text})
+  handleBody(event) {
+    this.setState({body: event.nativeEvent.text})
   }
 
   setModalVisible = (visible) => {
     this.setState({modalVisible: visible});
   };
+
+  componentDidMount() {
+    console.info("just updated.");
+  }
 
   render() {
     return (
@@ -45,10 +49,10 @@ export default class PopupModal extends Component {
           />
           <Input
             type="text"
-            value={this.state.contents}
-            onChange={this.handleContents}
+            value={this.state.body}
+            onChange={this.handleBody}
             errorStyle={{ color: 'red' }}
-            errorMessage='Please enter contents of entry'
+            errorMessage='Please enter body of entry'
             style={styles.input}
           />
           <Button
@@ -60,13 +64,14 @@ export default class PopupModal extends Component {
             title="Submit"
             onPress={() => {
               console.info("Subject: " + this.state.subject);
-              console.info("Contents: " + this.state.contents);
+              console.info("Body: " + this.state.body);
               requestWithBodyAsync('/entry', 'POST', JSON.stringify({
                   subject: this.state.subject,
-                  contents: this.state.contents
+                  body: this.state.body
                 })).then((responseJson) => {
                 console.info(JSON.stringify(responseJson));
-                this.setModalVisible(false)
+                this.props.dataRefresh();
+                this.setModalVisible(false);
               });
             }}
             style={styles.button}

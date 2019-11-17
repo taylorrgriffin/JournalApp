@@ -16,6 +16,15 @@ class GlobalContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.info("just updated.");
+  }
+
+  updateEntries = () => {
+    console.info("Refreshing data...");
+    this.forceUpdate();
+  }
+
   render() {
     return(
       <View style={styles.container}>
@@ -39,8 +48,11 @@ class GlobalContainer extends Component {
         </View>
         <AddEntryModal
           ref={addEntryModal => {this.addEntryModal = addEntryModal}}
+          dataRefresh={this.updateEntries}
         />
-        <EntryContainer/>
+        <EntryContainer
+          ref={entryContainer => {this.entryContainer = entryContainer}}
+        />
       </View>
     );
   }
@@ -54,6 +66,12 @@ const styles = StyleSheet.create({
   },
   navbar: {
     flexDirection:'row',
-    flexWrap:'wrap'
+    flexWrap:'wrap',
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
   },
 });
