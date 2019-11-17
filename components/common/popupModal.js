@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import { Input, Button, Overlay } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
+import { Text, Input, Button, Overlay } from 'react-native-elements';
 import { requestWithBodyAsync } from './request';
 
 export default class PopupModal extends Component {
@@ -38,44 +38,42 @@ export default class PopupModal extends Component {
     return (
       <Overlay isVisible={this.state.modalVisible}>
         <View style={styles.container}>
-          <Text h1>{this.title}</Text>
+          <Text h3>{this.title}</Text>
           <Input
+            label="Subject"
             type="text"
             value={this.state.subject}
             onChange={this.handleSubject}
-            errorStyle={{ color: 'red' }}
-            errorMessage='Please enter a subject'
-            style={styles.input}
           />
           <Input
+            label="Body"
             type="text"
             value={this.state.body}
             onChange={this.handleBody}
-            errorStyle={{ color: 'red' }}
-            errorMessage='Please enter body of entry'
-            style={styles.input}
           />
-          <Button
-            title="Cancel"
-            onPress={() => {this.setModalVisible(false)}}
-            style={styles.button}
-          />
-          <Button
-            title="Submit"
-            onPress={() => {
-              console.info("Subject: " + this.state.subject);
-              console.info("Body: " + this.state.body);
-              requestWithBodyAsync('/entry', 'POST', JSON.stringify({
-                  subject: this.state.subject,
-                  body: this.state.body
-                })).then((responseJson) => {
-                console.info(JSON.stringify(responseJson));
-                this.props.dataRefresh();
-                this.setModalVisible(false);
-              });
-            }}
-            style={styles.button}
-          />
+          <View style={styles.horiz}>
+            <Button
+              title="Cancel"
+              onPress={() => {this.setModalVisible(false)}}
+              style={styles.button}
+            />
+            <Button
+              title="Submit"
+              onPress={() => {
+                console.info("Subject: " + this.state.subject);
+                console.info("Body: " + this.state.body);
+                requestWithBodyAsync('/entry', 'POST', JSON.stringify({
+                    subject: this.state.subject,
+                    body: this.state.body
+                  })).then((responseJson) => {
+                  console.info(JSON.stringify(responseJson));
+                  this.props.dataRefresh();
+                  this.setModalVisible(false);
+                });
+              }}
+              style={styles.button}
+            />
+          </View>
         </View>
       </Overlay>
     );
@@ -86,11 +84,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: "center"
   },
-  button: {
-    margin: 25,
-  },
-  input: {
-    margin: 25,
+  horiz: {
+    flexDirection:'row',
+    flexWrap:'wrap',
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    minWidth: 200
   },
 });

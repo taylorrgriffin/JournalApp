@@ -29,9 +29,7 @@ class GlobalContainer extends Component {
     return(
       <View style={styles.container}>
         <View style={styles.navbar}>
-          <Text 
-          h1
-          style={{alignSelf: 'flex-start'}}>
+          <Text h1>
             Journal
           </Text>
           <Button
@@ -43,7 +41,6 @@ class GlobalContainer extends Component {
               />
             }
             onPress={() => {this.addEntryModal.setModalVisible(true)}}
-            style={{alignSelf: 'flex-end'}}
           />
         </View>
         <AddEntryModal
