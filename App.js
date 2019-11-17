@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AddEntryModal from './components/modals/addEntryModal';
+import EntryContainer from './components/containers/entryContainer';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ class GlobalContainer extends Component {
         <AddEntryModal
           ref={addEntryModal => {this.addEntryModal = addEntryModal}}
         />
+        <EntryContainer/>
       </View>
     );
   }

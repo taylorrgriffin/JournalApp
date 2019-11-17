@@ -2,7 +2,9 @@ const port = '5000';
 const baseUrl = '10.0.2.2';
 
 function requestWithoutBodyAsync(urlExt, method) {
-  return fetch('http://'+baseUrl+':'+port+urlExt, {
+  const url = 'http://'+baseUrl+':'+port+urlExt
+  console.log("Performing " + method + " request to " + url)
+  return fetch(url, {
     method: method,
     headers: {
         Accept: 'application/json',
