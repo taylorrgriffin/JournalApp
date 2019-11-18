@@ -36,6 +36,12 @@ export default class EntryContainer extends Component {
         this.state = { loading: true, data: null }
     }
 
+    reloadData() {
+        console.info("Reloading data...");
+        this.setState({ loading: true, data: null });
+        requestWithoutBodyAsync('/entry', 'GET').then(res => this.setState( { loading: false, data: res} ));
+    }
+
     componentDidMount() {
         requestWithoutBodyAsync('/entry', 'GET').then(res => this.setState( { loading: false, data: res} ));
     }
@@ -55,7 +61,7 @@ export default class EntryContainer extends Component {
 
         return(
             <Fragment>
-                {loading ? <Icon name="spinner" size={50} color="black"/> : this.renderEntries(data)}
+                {loading ? <Icon name="spinner" size={50} color="black" style={{alignSelf: "center", paddingTop: 30}}/> : this.renderEntries(data)}
             </Fragment>
         );
     }

@@ -22,8 +22,8 @@ class GlobalContainer extends Component {
   }
 
   updateEntries = () => {
-    console.info("Refreshing data...");
-    this.forceUpdate();
+    // console.info("Refreshing data...");
+    this.entryContainer.reloadData();
   }
 
   setEditMode = (_id, subject, body) => {
