@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { requestWithoutBodyAsync } from '../common/request';
 
-function Item({ subject, body }) {
+function Item({ subject, body, _id, setEditMode }) {
     return (
       <View style={styles.item}>
         <View style={styles.subjectBar}>
@@ -19,7 +19,9 @@ function Item({ subject, body }) {
                     color="black"
                 />
             }
-            onPress={() => {console.log("Editing the entry")}}
+            onPress={() => {
+                setEditMode(_id, subject, body);
+            }}
           />
             
         </View>
@@ -42,7 +44,7 @@ export default class EntryContainer extends Component {
         return(
             <FlatList
                 data={data}
-                renderItem={({ item }) => <Item subject={item.subject} body={item.body}/>}
+                renderItem={({ item }) => <Item subject={item.subject} body={item.body} _id={item._id} setEditMode={this.props.setEditMode}/>}
                 keyExtractor={item => item._id}
             />
         );

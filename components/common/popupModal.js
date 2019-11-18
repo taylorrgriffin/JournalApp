@@ -15,7 +15,8 @@ export default class PopupModal extends Component {
   state = {
     modalVisible: false,
     subject: null,
-    body: null
+    body: null,
+    _id: null,
   };
 
   handleSubject(event) {

@@ -15,9 +15,6 @@ export default class AddEntryModal extends PopupModal {
   render() {
     return (
       super.render()
-      // <PopupModal
-      //   title="Add new journal entry"
-      // />
     );
   }
 }
