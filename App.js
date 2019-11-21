@@ -17,12 +17,7 @@ class GlobalContainer extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.info("just updated.");
-  }
-
   updateEntries = () => {
-    // console.info("Refreshing data...");
     this.entryContainer.reloadData();
   }
 
@@ -55,9 +50,14 @@ class GlobalContainer extends Component {
         <AddEntryModal
           ref={addEntryModal => {this.addEntryModal = addEntryModal}}
           dataRefresh={this.updateEntries}
+          submitMsg="Add"
+          title="Add new entry"
         />
         <EditEntryModal
           ref={editEntryModal => {this.editEntryModal = editEntryModal}}
+          dataRefresh={this.updateEntries}
+          submitMsg="Update"
+          title="Update entry"
         />
         <EntryContainer
           ref={entryContainer => {this.entryContainer = entryContainer}}

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Input, Button, Overlay } from 'react-native-elements';
-import { requestWithBodyAsync } from './request';
 
 export default class PopupModal extends Component {
   constructor(props) {
     super(props);
-    this.title = 'Def';
     this.handleSubject = this.handleSubject.bind(this);
     this.handleBody = this.handleBody.bind(this);
     this.setModalVisible = this.setModalVisible.bind(this);
@@ -39,7 +37,7 @@ export default class PopupModal extends Component {
     return (
       <Overlay isVisible={this.state.modalVisible}>
         <View style={styles.container}>
-          <Text h3>{this.title}</Text>
+          <Text h3>{this.props.title}</Text>
           <Input
             label="Subject"
             type="text"
@@ -59,19 +57,14 @@ export default class PopupModal extends Component {
               style={styles.button}
             />
             <Button
-              title="Submit"
+              title={this.props.submitMsg}
               onPress={() => {
-                console.info("Subject: " + this.state.subject);
-                console.info("Body: " + this.state.body);
-                requestWithBodyAsync('/entry', 'POST', JSON.stringify({
-                    subject: this.state.subject,
-                    body: this.state.body
-                  })).then((responseJson) => {
+                this.onModalSubmit(this.state.subject, this.state.body, this.state._id, (responseJson) => {
                   console.info(JSON.stringify(responseJson));
                   this.props.dataRefresh();
                   this.setModalVisible(false);
-                });
-              }}
+                })}
+              }
               style={styles.button}
             />
           </View>

@@ -1,13 +1,26 @@
 import React, {Component} from 'react';
 import PopupModal from '../common/popupModal';
+import { requestWithBodyAsync } from '../common/request';
 
 export default class EditEntryModal extends PopupModal {
   constructor(props) {
     super(props);
-    this.title = 'Edit entry';
+    this.onModalSubmit = this.editEntry.bind(this);
   }
+
+  editEntry(subject, body, _id, callback) {
+    console.info("Subject: " + subject);
+    console.info("Body: " + body);
+    console.info("id is: " + _id);
+    requestWithBodyAsync('/entry/'+_id, 'PATCH', JSON.stringify({
+        subject: subject,
+        body: body
+      })).then((responseJson) => {
+      callback(responseJson);
+    });
+  }
+
   render() {
-    // this.setState({ body: this.props.body, _id: this.props._id, subject: this.props.subject, modalVisible: this.state.modalVisible });
     return (
       super.render()
     );
