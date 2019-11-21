@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AddEntryModal from './components/modals/addEntryModal';
 import EditEntryModal from './components/modals/editEntryModal';
 import EntryContainer from './components/containers/entryContainer';
+import DeleteAllEntries from './components/buttons/deleteAllEntries';
 
 export default function App() {
   return (
@@ -62,6 +63,13 @@ class GlobalContainer extends Component {
         <EntryContainer
           ref={entryContainer => {this.entryContainer = entryContainer}}
           setEditMode={this.setEditMode}
+        />
+        {/* <DeleteAllEntries
+          ref={deleteAllEntries => {this.deleteAllEntries = deleteAllEntries}}
+          d
+        /> */}
+        <DeleteAllEntries
+          dataRefresh={this.updateEntries}
         />
       </View>
     );

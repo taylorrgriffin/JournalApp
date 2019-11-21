@@ -54,7 +54,7 @@ export default class PopupModal extends Component {
             <Button
               title="Cancel"
               onPress={() => {this.setModalVisible(false)}}
-              style={styles.button}
+              style={{backgroundColor: "red"}}
             />
             <Button
               title={this.props.submitMsg}
