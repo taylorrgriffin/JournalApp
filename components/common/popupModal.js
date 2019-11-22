@@ -29,6 +29,10 @@ export default class PopupModal extends Component {
     this.setState({modalVisible: visible});
   };
 
+  clearModal = () => {
+    this.setState({subject: null, body: null})
+  }
+
   componentDidMount() {
     console.info("just updated.");
   }

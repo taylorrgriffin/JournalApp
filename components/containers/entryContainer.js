@@ -67,9 +67,15 @@ export default class EntryContainer extends Component {
     }
 }
 
+const colors = [
+    '#f9c2ff',
+    '#ECE63D',
+    '72EDB3',
+]
+
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: '#ECE63D',
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,

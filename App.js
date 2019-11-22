@@ -45,7 +45,10 @@ class GlobalContainer extends Component {
                 color="white"
               />
             }
-            onPress={() => {this.addEntryModal.setModalVisible(true)}}
+            onPress={() => {
+              this.addEntryModal.clearModal();
+              this.addEntryModal.setModalVisible(true);
+            }}
           />
         </View>
         <AddEntryModal
