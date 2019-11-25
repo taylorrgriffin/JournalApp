@@ -4,26 +4,41 @@ import { Button, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { requestWithoutBodyAsync } from '../common/request';
+// import { EditEntry } from '../buttons/edit';
 
 function Item({ subject, body, _id, setEditMode }) {
     return (
       <View style={styles.item}>
         <View style={styles.subjectBar}>
             <Text h4>{subject}</Text>
-            <Button
-            type="clear"
-            icon={
-                <Icon
-                    name="ellipsis-v"
-                    size={20}
-                    color="black"
+            <View style={styles.optionsBar}>
+                <Button
+                    type="clear"
+                    icon={
+                        <Icon
+                            name="ellipsis-v"
+                            size={20}
+                            color="black"
+                        />
+                    }
+                    onPress={() => {
+                        setEditMode(_id, subject, body);
+                    }}
                 />
-            }
-            onPress={() => {
-                setEditMode(_id, subject, body);
-            }}
-          />
-            
+                <Button
+                    type="clear"
+                    icon={
+                        <Icon
+                            name="times"
+                            size={20}
+                            color="black"
+                        />
+                    }
+                    onPress={() => {
+                        console.info("Removing it");
+                    }}
+                />
+            </View>
         </View>
         <Text>{body}</Text>
       </View>
@@ -82,7 +97,15 @@ const styles = StyleSheet.create({
       },
       subjectBar: {
         flexDirection:'row',
-        flexWrap:'wrap',
+        flexWrap:'nowrap',
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        justifyContent: "space-between",
+        alignItems: "center"
+      },
+      optionsBar: {
+        flexDirection:'row',
+        flexWrap:'nowrap',
         paddingVertical: 15,
         paddingHorizontal: 10,
         justifyContent: "space-between",
