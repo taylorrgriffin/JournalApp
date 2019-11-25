@@ -4,9 +4,14 @@ import { Button, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { requestWithoutBodyAsync } from '../common/request';
-// import { EditEntry } from '../buttons/edit';
 
-function Item({ subject, body, _id, setEditMode }) {
+const deleteEntry = (_id, callback) => {
+    requestWithoutBodyAsync('/entry/'+_id, 'DELETE').then((responseJson) => {
+        callback(responseJson);
+    });
+}
+
+const Item = ({ subject, body, _id, setEditMode, refreshItems }) => {
     return (
       <View style={styles.item}>
         <View style={styles.subjectBar}>
@@ -35,7 +40,10 @@ function Item({ subject, body, _id, setEditMode }) {
                         />
                     }
                     onPress={() => {
-                        console.info("Removing it");
+                        deleteEntry(_id, (res) => {
+                            console.info(res);
+                            refreshItems();
+                        });
                     }}
                 />
             </View>
@@ -65,7 +73,7 @@ export default class EntryContainer extends Component {
         return(
             <FlatList
                 data={data}
-                renderItem={({ item }) => <Item subject={item.subject} body={item.body} _id={item._id} setEditMode={this.props.setEditMode}/>}
+                renderItem={({ item }) => <Item subject={item.subject} body={item.body} _id={item._id} setEditMode={this.props.setEditMode} refreshItems={this.props.refreshData} />}
                 keyExtractor={item => item._id}
             />
         );

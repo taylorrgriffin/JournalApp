@@ -66,6 +66,7 @@ class GlobalContainer extends Component {
         <EntryContainer
           ref={entryContainer => {this.entryContainer = entryContainer}}
           setEditMode={this.setEditMode}
+          refreshData={this.updateEntries}
         />
         {/* <DeleteAllEntries
           ref={deleteAllEntries => {this.deleteAllEntries = deleteAllEntries}}
