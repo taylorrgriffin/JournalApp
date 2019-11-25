@@ -7,10 +7,6 @@ export default class DeleteAllEntries extends Component {
     super(props);
   }
 
-  // callback(res) {
-    
-  // }
-
   deleteAllEntries(callback) {
     console.info("DELETING ALL ENTRIES");
     requestWithoutBodyAsync('/entry/', 'DELETE')
@@ -27,7 +23,7 @@ export default class DeleteAllEntries extends Component {
         console.info(res);
         this.props.dataRefresh();
       })}}
-      style={{backgroundColor: "red"}}
+      buttonStyle={{backgroundColor: "#dc3545"}}
     />
     );
   }

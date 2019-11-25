@@ -49,6 +49,7 @@ class GlobalContainer extends Component {
               this.addEntryModal.clearModal();
               this.addEntryModal.setModalVisible(true);
             }}
+            buttonStyle={{backgroundColor: "#007bff"}}
           />
         </View>
         <AddEntryModal
@@ -68,10 +69,6 @@ class GlobalContainer extends Component {
           setEditMode={this.setEditMode}
           refreshData={this.updateEntries}
         />
-        {/* <DeleteAllEntries
-          ref={deleteAllEntries => {this.deleteAllEntries = deleteAllEntries}}
-          d
-        /> */}
         <DeleteAllEntries
           dataRefresh={this.updateEntries}
         />

@@ -58,7 +58,7 @@ export default class PopupModal extends Component {
             <Button
               title="Cancel"
               onPress={() => {this.setModalVisible(false)}}
-              style={{backgroundColor: "red"}}
+              buttonStyle={{backgroundColor: "#dc3545"}}
             />
             <Button
               title={this.props.submitMsg}
@@ -69,7 +69,7 @@ export default class PopupModal extends Component {
                   this.setModalVisible(false);
                 })}
               }
-              style={styles.button}
+              buttonStyle={{backgroundColor: "#28a745"}}
             />
           </View>
         </View>
