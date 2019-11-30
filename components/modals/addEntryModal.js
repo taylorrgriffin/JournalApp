@@ -11,7 +11,7 @@ export default class AddEntryModal extends PopupModal {
   addNewEntry(subject, body, _id, callback) {
     console.info("Subject: " + subject);
     console.info("Body: " + body);
-    requestWithBodyAsync('/entry', 'POST', JSON.stringify({
+    requestWithBodyAsync('entry', 'POST', JSON.stringify({
         subject: subject,
         body: body
       })).then((responseJson) => {
