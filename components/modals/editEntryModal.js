@@ -12,7 +12,7 @@ export default class EditEntryModal extends PopupModal {
     console.info("Subject: " + subject);
     console.info("Body: " + body);
     console.info("id is: " + _id);
-    requestWithBodyAsync('/entry/'+_id, 'PATCH', JSON.stringify({
+    requestWithBodyAsync('entry/'+_id, 'PATCH', JSON.stringify({
         subject: subject,
         body: body
       })).then((responseJson) => {

@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { requestWithoutBodyAsync } from '../common/request';
 
 const deleteEntry = (_id, callback) => {
-    requestWithoutBodyAsync('/entry/'+_id, 'DELETE').then((responseJson) => {
+    requestWithoutBodyAsync('entry/'+_id, 'DELETE').then((responseJson) => {
         callback(responseJson);
     });
 }
@@ -62,11 +62,11 @@ export default class EntryContainer extends Component {
     reloadData() {
         console.info("Reloading data...");
         this.setState({ loading: true, data: null });
-        requestWithoutBodyAsync('/entry', 'GET').then(res => this.setState( { loading: false, data: res} ));
+        requestWithoutBodyAsync('entry', 'GET').then(res => this.setState( { loading: false, data: res} ));
     }
 
     componentDidMount() {
-        requestWithoutBodyAsync('/entry', 'GET').then(res => this.setState( { loading: false, data: res} ));
+        requestWithoutBodyAsync('entry', 'GET').then(res => this.setState( { loading: false, data: res} ));
     }
 
     renderEntries = data => {
