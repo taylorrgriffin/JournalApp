@@ -1,9 +1,9 @@
-const port = '5000';
-const baseUrl = '10.0.2.2';
+import { getEnvVars } from '../../environment';
+const { apiUrl } = getEnvVars();
 
 function requestWithoutBodyAsync(urlExt, method) {
-  const url = 'http://'+baseUrl+':'+port+urlExt
-  console.log("Performing " + method + " request to " + url)
+  const url = `http://${apiUrl}/${urlExt}`;
+  console.log("Performing " + method + " request to " + url);
   return fetch(url, {
     method: method,
     headers: {
@@ -22,7 +22,9 @@ function requestWithoutBodyAsync(urlExt, method) {
 }
 
 function requestWithBodyAsync(urlExt, method, body) {
-    return fetch('http://'+baseUrl+':'+port+urlExt, {
+    const url = `http://${apiUrl}/${urlExt}`;
+    console.log("Performing " + method + " request to " + url);
+    return fetch(url, {
       method: method,
       headers: {
           Accept: 'application/json',

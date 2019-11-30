@@ -9,7 +9,7 @@ export default class DeleteAllEntries extends Component {
 
   deleteAllEntries(callback) {
     console.info("DELETING ALL ENTRIES");
-    requestWithoutBodyAsync('/entry/', 'DELETE')
+    requestWithoutBodyAsync('entry/', 'DELETE')
     .then((responseJson) => {
       callback(responseJson);
     });
